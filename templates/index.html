@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>File Upload with Deduplication</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>File Upload with Deduplication System</h1>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="file" id="fileInput" name="file" required />
+      <button type="submit">Upload File</button>
+    </form>
+
+    <div id="displayHashContainer" style="margin: 15px 0; display: flex; align-items: center;">
+      <input type="text" id="hashOutput" readonly style="flex: 1; padding: 8px; font-family: monospace;" placeholder="SHA-256 hash will appear here">
+      <button type="button" id="copyHashBtn" style="margin-left: 10px; padding: 8px 12px;" disabled>Copy</button>
+    </div>
+
+    <div id="responseMessage" style="margin-top: 10px; font-weight: bold;"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='upload.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: ../Dockerfile.server
+    volumes:
+      - ./server/storage:/app/storage
+    ports:
+      - "5000:5000"
+
+  client:
+    build:
+      context: ./client
+      dockerfile: ../Dockerfile.client
+    depends_on:
+      - server
