@@ -1,0 +1,64 @@
+
+Project Details: Hash-Based Client-Server System
+
+Overview
+
+This project implements a hash-based client-server system using Python. The core functionality focuses on uploading files from a client application to a server, with a mechanism to prevent duplicate file storage. This is achieved by computing the SHA256 hash of each uploaded file and checking for existing matches on the server before storing the file. If a file with the same hash already exists, it is not re-saved, thereby avoiding redundancy.
+
+Components
+
+- client/client.py: A client-side script to upload files to the server.
+- server/server.py: A server-side script that receives uploaded files, computes hashes, and handles storage logic.
+- app.py: The main Flask application that provides a web interface for file uploads.
+- upload_file.py / default_file.py: Utility modules to manage file uploads and default content.
+- templates/index.html: The HTML frontend for the web application.
+- static/: Contains associated JavaScript and CSS files for the user interface.
+- uploads/: Directory where uploaded files are stored. Files are saved using their SHA256 hash as the filename.
+- storage/uploads/: Prepopulated with example or default files.
+
+Deployment Details
+
+Containerized Setup Using Docker
+
+This project uses Docker and Docker Compose for deployment, ensuring a consistent environment and simplified setup across various systems.
+
+Required Files
+
+- Dockerfile.client: Defines the build instructions for the client container.
+- Dockerfile.server: Defines the build instructions for the server container.
+- docker-compose.yml: Manages the multi-container deployment, allowing both the client and server to run concurrently.
+
+Prerequisites
+
+Ensure the following are installed on your system:
+
+- Docker
+- Docker Compose
+
+On most Linux systems, you can install them using the following commands:
+
+sudo apt update
+sudo apt install docker.io docker-compose -y
+
+Running the Application
+
+1. Navigate to the root directory of the project.
+2. Execute the following command to build and start the containers:
+
+docker-compose up --build
+
+This command builds the Docker images for both the client and server, then starts the services in isolated containers.
+
+Accessing the Application
+
+Once the containers are running, open a web browser and navigate to:
+
+http://localhost:5000
+
+This will load the web interface where users can upload files. The application will process each file and either store it (if unique) or flag it as a duplicate based on hash comparison.
+
+Shutting Down the Application
+
+To stop and remove the containers, run the following command:
+
+docker-compose down
