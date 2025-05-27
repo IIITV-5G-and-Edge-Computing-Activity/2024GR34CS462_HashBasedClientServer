@@ -4,6 +4,7 @@ import sys
 import os
 
 def sarah_hash_file(filepath):
+    # Compute and return the SHA256 hash of the given file
     sha = hashlib.sha256()
     with open(filepath, 'rb') as f:
         while chunk := f.read(8192):
